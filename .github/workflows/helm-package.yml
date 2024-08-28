@@ -18,7 +18,12 @@ jobs:
 
       - name: Package Helm Chart
         run: helm package ./charts/react-hello-world -d ./charts
-
+        
+      - uses: actions/checkout@v3
+        with:
+          repository: https://github.com/kulik95/helm-charts.git
+          ref: 'main'
+          token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
       - name: Push to Helm Charts Repo
         run: |
           git clone https://github.com/kulik95/helm-charts.git
@@ -29,5 +34,4 @@ jobs:
           git config user.email "actions@github.com"
           git add .
           git commit -m "Add react-hello-world chart"
-          git remote set-url origin git@github.com:kulik95/helm-charts.git
           git push origin main
