@@ -28,6 +28,7 @@ jobs:
         run: |
           pwd
           git clone https://github.com/kulik95/helm-charts.git
+          ls
           mv ./charts/react-hello-world-*.tgz helm-charts/
           cd helm-charts
           helm repo index .
