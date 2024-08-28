@@ -1,9 +1,11 @@
 name: Package and Push Helm Chart
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Bump Semantic Version"]
+    branches: [main]
+    types: 
+      - completed
 
 jobs:
   package-helm-chart:
