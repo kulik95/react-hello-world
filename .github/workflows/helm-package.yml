@@ -24,6 +24,7 @@ jobs:
           repository: kulik95/helm-charts
           ref: 'main'
           token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+          path: helm-charts
       - name: Push to Helm Charts Repo
         run: |
           pwd
