@@ -18,11 +18,18 @@ jobs:
 
       - name: Package Helm Chart
         run: helm package ./charts/react-hello-world -d ./charts
-
+        
+      - uses: actions/checkout@v3
+        with:
+          repository: kulik95/helm-charts
+          ref: 'main'
+          token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+          path: helm-charts
       - name: Push to Helm Charts Repo
         run: |
-          git clone https://github.com/kulik95/helm-charts.git
-          mv ./charts/react-hello-world-*.tgz helm-charts/
+          pwd
+          ls
+          mv ./charts/react-hello-world-*.tgz helm-charts/charts/
           cd helm-charts
           helm repo index .
           git config user.name "github-actions"
