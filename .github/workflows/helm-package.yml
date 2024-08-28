@@ -26,6 +26,7 @@ jobs:
           token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
       - name: Push to Helm Charts Repo
         run: |
+          pwd
           git clone https://github.com/kulik95/helm-charts.git
           mv ./charts/react-hello-world-*.tgz helm-charts/
           cd helm-charts
