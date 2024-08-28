@@ -105,3 +105,14 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+opal:
+  enabled: true
+  image:
+    repository: authorizon/opal-server
+    tag: latest
+  env:
+    OPAL_POLICY_REPO_URL: "https://github.com/kulik95/opal-policies"
+    OPAL_AUTH_BACKEND_URL: "http://opa-service:8181"
+  ports:
+    - containerPort: 7002

@@ -50,6 +50,17 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- if .Values.opal.enabled }}
+          - name: opal-sidecar
+            image: "{{ .Values.opal.image.repository }}:{{ .Values.opal.image.tag }}"
+            ports:
+            - containerPort: {{ .Values.opal.ports.containerPort }}
+            env:
+            {{- range $key, $value := .Values.opal.env }}
+            - name: {{ $key }}
+              value: {{ $value }}
+            {{- end }}
+          {{- end }}
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
